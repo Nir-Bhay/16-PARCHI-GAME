@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url(/assets/img/2322.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Arial", sans-serif;
+}
+
+.nav_bar {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #095CB0, #0a7eec);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 0 2%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav_logo {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav_logo img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav_logo img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.payer_setting {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Login {
+    width: auto;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Login a {
+    width: auto;
+    padding: 0.5rem 1.5rem;
+    background: #fff;
+    color: #095CB0;
+    font-size: 1.3rem;
+    font-family: "Arial", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.Login a:hover {
+    background: #ff5722;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 12px rgba(255, 87, 34, 0.5);
+}
+
+.setting a {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.setting a:hover {
+    transform: scale(1.2);
+    color: #ff5722;
+}
+.web_body {
+    margin-top: 10%;
+    width: 100%;
+    height: 85%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.Body_box {
+    width: 80%;
+    height: 90%;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+.payer_option,
+.payer_profile {
+    width: 40%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.button {
+    width: 70%;
+    height: 15%;
+    border-radius: 5px;
+    background-color: #0a7eec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #0a7eec, #0056b3);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.button a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-45deg);
+    z-index: 0;
+    transition: left 0.5s ease;
+}
+
+.button:hover::before {
+    left: 100%;
+}

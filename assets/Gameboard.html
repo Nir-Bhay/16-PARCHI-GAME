@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 Parchi Thap - Single Player Game</title>
+    <link rel="stylesheet" href="/assets/css/Gameboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-wrapper">
+        <h1>16 Parchi Thap</h1>
+
+        <div class="game-container">
+            <div id="player-3" class="player-area computer-player top">
+                <div class="player-profile">
+                    <img src="https://via.placeholder.com/50" alt="Computer 2" class="profile-pic">
+                    <h2>Computer 2</h2>
+                  
+                </div>
+                <div class="parchi-cards" id="player-3-cards"></div>
+            </div>
+
+            <div id="player-2" class="player-area computer-player left">
+                <div class="player-profile">
+                    <img src="https://via.placeholder.com/50" alt="Computer 1" class="profile-pic">
+                    <h2>Computer 1</h2>
+                  
+                </div>
+                <div class="parchi-cards" id="player-2-cards"></div>
+            </div>
+
+            <div id="player-4" class="player-area computer-player right">
+                <div class="player-profile">
+                    <img src="https://via.placeholder.com/50" alt="Computer 3" class="profile-pic">
+                    <h2>Computer 3</h2>
+                 
+                </div>
+                <div class="parchi-cards" id="player-4-cards"></div>
+            </div>
+
+            <div id="player-1" class="player-area human-player">
+                <div class="player-profile">
+                    <img src="https://via.placeholder.com/50" alt="You" class="profile-pic">
+                    <h2>Player 1 (You)</h2>
+                   
+                </div>
+                <div>
+                    <div class="parchi-cards" id="player-1-cards">
+                    
+                    </div>
+                    <div class="pass-controls">
+                        <button onclick="playerPassParchi(0)">Pass Type 1</button>
+                        <button onclick="playerPassParchi(1)">Pass Type 2</button>
+                        <button onclick="playerPassParchi(2)">Pass Type 3</button>
+                        <button onclick="playerPassParchi(3)">Pass Type 4</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="center-content">
+            <div id="message-area"></div>
+            <div id="game-controls">
+                <button id="start-game-button" onclick="startGame()">Start Game</button>
+                <button id="shuffle-button" style="display: none;" onclick="shuffleAndStartGame()">Shuffle
+                    Cards</button>
+            </div>
+            <div id="winner-display" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="/assets/js/Gameboard.js"></script>
+</body>
+
+</html>

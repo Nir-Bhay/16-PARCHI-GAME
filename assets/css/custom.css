@@ -1,0 +1,346 @@
+ * {
+     padding: 0;
+ }
+
+ body {
+     width: 100vw;
+     height: 100vh;
+     font-family: Arial, sans-serif;
+     background-color: #f0f0f0;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     justify-content: space-evenly;
+     flex-direction: column;
+     align-items: center;
+     background-image: url(/assets/img/2322.jpg);
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+
+
+ }
+
+ .navbar {
+     width: 100%;
+     height: 10%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     background-color: #095CB0;
+     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.54);
+ }
+
+ .navbar0 {
+     width: 95%;
+     height: 100%;
+     background-color: #095CB0;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     text-align: center;
+
+
+ }
+
+ .costum_body {
+     width: 90%;
+     height: 90%;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     flex-wrap: wrap;
+
+ }
+
+ .container {
+     max-width: 550px;
+     height: 88%;
+     /* margin: 50px auto; */
+     /* padding: 20px; */
+     background-color: #fff;
+     border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     background: linear-gradient(to bottom,
+             rgba(116, 53, 188, 0.938) 2.44948%,
+             rgba(41, 123, 190, 0.882) 52.5252%,
+             rgba(90, 147, 193, 0.607) 100%);
+     color: white;
+     display: flex;
+     flex-direction: column;
+     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.84);
+ }
+
+ .container .heading {
+     width: 100%;
+     height: 15%;
+     background-color: #1B253C;
+     align-items: center;
+     text-align: center;
+     border-radius: 10px 10px 0px 0px;
+ }
+
+ .container form {
+     width: 100%;
+     height: 85%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     align-items: center;
+     /* padding: 2px 1px 0px 30px; */
+     /* background-color: rebeccapurple; */
+
+
+
+ }
+
+ .container form .para_text {
+     /* margin-left: 30px; */
+     /* background-color: rebeccapurple; */
+     width: 90%;
+     color: #cdcdcd;
+     text-wrap: wrap;
+     font-size: 20px;
+ }
+
+ .container .choose_player {
+     width: 100%;
+     height: 20%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     /* align-content: center; */
+     align-items: center;
+     /* background-color: rebeccapurple; */
+     font-size: 32px;
+     /* flex-wrap: wrap; */
+     /* justify-content: space-evenly; */
+
+ }
+
+ .container .choose_player select {
+     width: 30%;
+     height: 50%;
+     background-color: #0d4073ab;
+     color: white;
+     border: none;
+     outline: none;
+     border-radius: 5px;
+     font-size: 29px;
+     text-align: center;
+ }
+
+ .container .choose_player select option {
+     background-color: #13508c;
+
+ }
+
+ .container .naming {
+
+     width: 90%;
+     min-height: 25%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+     font-size: 32px;
+     /* flex-wrap: wrap; */
+     /* background-color: rebeccapurple; */
+
+ }
+
+ .container .naming .Player_option {
+     width: 80%;
+     height: 70%;
+     /* background-color: #565656; */
+     color: black;
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+     font-weight: bold;
+     display: flex;
+     justify-content: center;
+     text-align: center;
+     font-size: 19px;
+     margin-top: 10px;
+
+
+ }
+
+ .defult_name {
+     width: 40%;
+ }
+
+ .defult_name p {
+     font-size: 13px;
+
+ }
+
+ .manual_name {
+     width: 60%;
+
+ }
+
+ .name_input {
+     width: 100%;
+     height: 70%;
+     /* background-color: red; */
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     align-items: center;
+ }
+
+ .name_input input {
+     border: none;
+     outline: none;
+
+ }
+
+ .div {
+
+     width: 40%;
+     height: 40%;
+     border: none;
+     position: relative;
+     top: 10px;
+     font-size: 13px;
+     font-weight: bold;
+     background-color: #0a6cc8;
+     color: rgb(216, 216, 216);
+
+ }
+
+ /* .button{
+    width:85%;
+    height:20%;
+    /* background-color: #fff; */
+ /* display: block; */
+ /* align-items: center; */
+ /* } */
+
+ .button {
+    width: 70%;
+        height: 15%;
+        border-radius: 5px;
+        background-color: #0a7eec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: large;
+        cursor: pointer;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+
+ }
+
+
+.button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #0a7eec, #0056b3);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.button a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-45deg);
+    z-index: 0;
+    transition: left 0.5s ease;
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+ #manualNameInput {
+     display: none;
+     width: 70%;
+     height: 50%;
+     border: none;
+     outline: none;
+     padding-left: 10px;
+     font-size: 15px;
+
+
+ }
+
+
+ #manualNamesDisplay {
+
+     margin-top: 20px;
+
+ }
+
+ .costum_box02 .heading {
+
+     font-size: 20px;
+
+ }
+
+ .costum_box02 form {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+ }
+
+ .costum_box02 form .para_text {}
+
+ .costum_box02 form label {
+     color: #ffffff;
+     text-align: center;
+
+     font-size: 32px;
+     font-weight: 400;
+     height: 98px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     top: 20px;
+
+
+ }
+
+
+ .costum_box02 form input {
+     width: 50%;
+     height: 13%;
+     background-color: #0d4073ab;
+     color: white;
+     border: none;
+     outline: none;
+     border-radius: 5px;
+     font-size: 29px;
+     text-align: center;
+ }
+
+ .costum_box02 form button {
+
+     display: block;
+     width: 50%;
+     height: 15%;
+     background-color: #0a7eec;
+     color: #fff;
+     border: none;
+     cursor: pointer;
+     font-size: 45px;
+     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.74);
+ }
+ 
