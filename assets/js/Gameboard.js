@@ -3,6 +3,8 @@ const TOTAL_TYPES = 4;
 const CARDS_PER_TYPE = 4;
 const TOTAL_PLAYERS = 4;
 
+
+
 // Player hands and game variables
 let playerHands = Array.from({ length: TOTAL_PLAYERS }, () => []);
 let currentPlayerIndex = -1; // Track turns (-1 = not started, 0 = player, 1-3 = AIs)
@@ -46,9 +48,13 @@ function renderPlayerHand(playerIndex) {
 // Function to display all players' hands
 function renderAllHands() {
     for (let i = 0; i < TOTAL_PLAYERS; i++) {
-        renderPlayerHand(i);
+        const playerHandElement = document.getElementById(`player-hand-${i}`);
+        if (playerHandElement) {
+            playerHandElement.innerHTML = playerHands[i].map(card => `<div class="card">${card}</div>`).join('');
+        }
     }
 }
+
 
 // Message display
 function displayMessage(message, type = '') {
@@ -57,11 +63,16 @@ function displayMessage(message, type = '') {
     messageArea.className = type;
 }
 
+
+
+
+
 // Check win condition for any player
 function checkWinCondition() {
     for (let i = 0; i < TOTAL_PLAYERS; i++) {
         const counts = Array(TOTAL_TYPES).fill(0);
         playerHands[i].forEach((parchi) => counts[parchi]++);
+
         if (counts.some((count) => count === CARDS_PER_TYPE)) {
             const winner = i === 0 ? "You" : `Computer ${i}`;
             displayMessage(`${winner} won the game!`, winner === "You" ? 'win' : 'lose');
@@ -69,27 +80,40 @@ function checkWinCondition() {
             updateWinnerDisplay();
             updatePointsDisplay();
             renderAllHands(); // Show all players' hands
+
+            // Transfer the extra card to the next player
+            const nextPlayerIndex = (i + 1) % TOTAL_PLAYERS;
+            if (playerHands[i].length > 0) {
+                const extraCard = playerHands[i].pop(); // Remove the last card from the winner
+                playerHands[nextPlayerIndex].push(extraCard); // Transfer it to the next player
+                displayMessage(`${winner} transferred a card to ${nextPlayerIndex === 0 ? "You" : `Computer ${nextPlayerIndex}`}.`);
+                
+            }
+            displayMessage(`${winner} won the game!`, winner === "You" ? 'win' : 'lose');
             currentPlayerIndex = -1; // End game
-            setTimeout(startGame, 3000); // Automatically start a new game after 3 seconds
+            setTimeout(startGame, 3000); // Show the start/reset button for a new match
             return true;
         }
     }
     return false;
 }
 
+
+
 // Update winner display
 function updateWinnerDisplay() {
-    const winnerDisplay = document.getElementById("winner-display");
-    winnerDisplay.innerHTML = `Wins: <br>Player: ${winCounts[0]}<br>Computer 1: ${winCounts[1]}<br>Computer 2: ${winCounts[2]}<br>Computer 3: ${winCounts[3]}`;
+    const winnerDisplay = document.getElementById('winner-display');
+   
+        winnerDisplay.innerText = `Wins: ${winCounts.join(', ')}`; // Update the display with win counts
     winnerDisplay.style.display = 'block';
 }
 
-// Update points display
 function updatePointsDisplay() {
-    const playerPoints = document.getElementById("player-points");
-    playerPoints.textContent = winCounts[0];
+    const pointsDisplay = document.getElementById('points-display');
+   
+        pointsDisplay.innerText = `Points: ${winCounts.join(', ')}`; // Update the display with points
+    
 }
-
 // Handle player's action
 // Handle player's action
 function playerPassParchi(type) {
@@ -145,14 +169,31 @@ function computerTurn() {
     const aiIndex = currentPlayerIndex;
     const nextPlayerIndex = (currentPlayerIndex + 1) % TOTAL_PLAYERS;
 
-    // AI strategy: Pass the parchi type it has the most of
+    // Count the number of each parchi type the AI has
     const parchiCounts = Array(TOTAL_TYPES).fill(0);
     playerHands[aiIndex].forEach((parchi) => parchiCounts[parchi]++);
+
+    // Determine the type with the maximum count
     const maxCount = Math.max(...parchiCounts);
-    const parchiToPassIndex = playerHands[aiIndex].findIndex((parchi) => parchiCounts[parchi] === maxCount);
+    const parchiToFocusOn = parchiCounts.findIndex(count => count === maxCount);
+
+    // Check if the AI can disguise its intentions
+    let parchiToPassIndex;
+    const mixedTypes = playerHands[aiIndex].filter(parchi => parchi !== parchiToFocusOn);
+
+    // If there are mixed types, randomly choose one to pass
+    if (mixedTypes.length > 0) {
+        parchiToPassIndex = playerHands[aiIndex].indexOf(mixedTypes[Math.floor(Math.random() * mixedTypes.length)]);
+    } else {
+        // If no mixed types, pass the type it has the most of
+        parchiToPassIndex = playerHands[aiIndex].findIndex((parchi) => parchiCounts[parchi] === maxCount);
+    }
 
     const parchiToPass = playerHands[aiIndex].splice(parchiToPassIndex, 1)[0]; // Remove the selected parchi
     playerHands[nextPlayerIndex].push(parchiToPass); // Pass to next player
+
+    // Update actions after passing
+    updatePlayerActions(aiIndex, parchiToPass);
 
     renderPlayerHand(aiIndex);
     renderPlayerHand(nextPlayerIndex);
@@ -198,6 +239,91 @@ document.getElementById("shuffle-button").addEventListener("click", () => {
     shuffleAndStartGame();
     document.getElementById("shuffle-button").style.display = 'none';
 });
+
+
+
+function showStartButton() {
+    const existingButton = document.getElementById('start-button');
+    if (existingButton) {
+        existingButton.remove(); // Remove existing button if it exists
+    }
+
+    const startButton = document.createElement('button');
+    startButton.id = 'start-button'; // Assign an ID for easy reference
+    startButton.innerText = 'Start New Match';
+    startButton.onclick = startNewMatch; // Function to reset the game state
+    document.body.appendChild(startButton); // Append the button to the body or a specific container
+}
+
+function startNewMatch() {
+    // Reset game state and player hands
+    playerHands = Array.from({ length: TOTAL_PLAYERS }, () => initializePlayerHand());
+    currentPlayerIndex = 0; // Reset to the first player
+    winCounts = Array(TOTAL_PLAYERS).fill(0); // Reset win counts
+
+    // Remove the start button
+    const startButton = document.getElementById('start-button');
+    if (startButton) {
+        startButton.remove();
+    }
+
+    // Reset UI and prepare for a new game
+    resetGameUI();
+    displayMessage("New match started! Your turn.");
+}
+
+function resetGameUI() {
+    // Clear all player hands from the UI
+    for (let i = 0; i < TOTAL_PLAYERS; i++) {
+        const playerHandElement = document.getElementById(`player-hand-${i}`);
+        if (playerHandElement) {
+            playerHandElement.innerHTML = ''; // Clear the player's hand display
+        }
+    }
+
+    // Reset scores displayed on the UI
+    for (let i = 0; i < TOTAL_PLAYERS; i++) {
+        const scoreElement = document.getElementById(`player-score-${i}`);
+        if (scoreElement) {
+            scoreElement.innerText = '0'; // Reset scores to zero
+        }
+    }
+
+    // Clear any messages displayed on the UI
+    const messageElement = document.getElementById('game-message');
+    if (messageElement) {
+        messageElement.innerText = ''; // Clear any previous game messages
+    }
+
+    // Reset any other UI elements as necessary
+    const gameBoardElement = document.getElementById('game-board');
+    if (gameBoardElement) {
+        gameBoardElement.innerHTML = ''; // Clear the game board if applicable
+    }
+
+    // Optionally, reset any visual effects or animations
+    const highlightedElements = document.querySelectorAll('.highlight');
+    highlightedElements.forEach(element => {
+        element.classList.remove('highlight'); // Remove highlights
+    });
+
+    // Reset turn indicator if needed
+    const turnIndicator = document.getElementById('turn-indicator');
+    if (turnIndicator) {
+        turnIndicator.innerText = 'Your turn!'; // Reset turn indicator
+    }
+}
+
+
+
+
+
+function initializePlayerHand() {
+    // Logic to initialize a player's hand with cards
+    return []; // Return an empty array or an array of cards as needed
+}
+
+
 
 // Start the game on load
 updateWinnerDisplay();

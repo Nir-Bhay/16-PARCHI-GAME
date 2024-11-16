@@ -291,3 +291,10 @@ h2 {
         transform: translateX(0);
     }
 }
+
+
+
+.card.highlight {
+    background-color: rgb(1, 56, 254);
+    /* Light red color */
+}
