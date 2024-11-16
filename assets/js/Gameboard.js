@@ -135,7 +135,7 @@ function playerPassParchi(type) {
 
     if (checkWinCondition()) return;
     currentPlayerIndex = 1; // Move to next player's turn
-    setTimeout(computerTurn, 1000);
+    setTimeout(computerTurn, 3000);
 }
 
 // Handle AI turns
