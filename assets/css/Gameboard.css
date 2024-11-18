@@ -288,3 +288,24 @@ h2 {
     border: 2px solid yellow;
     box-shadow: 0 0 10px yellow;
 }
+
+/* Add these styles to your existing CSS */
+
+#winner-display,
+#points-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: right;
+    z-index: 1000;
+}
+
+#winner-display {
+    margin-bottom: 10px;
+}

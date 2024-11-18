@@ -7,6 +7,13 @@ const FRUIT_NAMES = ['आम', 'केला', 'सेब', 'अंगूर'];
 // New player names
 const PLAYER_NAMES = ['You', 'Rupali', 'Rohit', 'Dipu'];
 
+const FRUIT_POINTS = {
+    'आम': 1000,
+    'केला': 800,
+    'सेब': 500,
+    'अंगूर': 100
+};
+
 
 // Array of emojis to use for computer players' cards
 const EMOJIS = ['🍎', '🍌', '🍇', '🍉', '🍒', '🍓', '🍑', '🍍', '🥭', '🍊', '🍋', '🍈', '🍏', '🍐', '🍅', '🍆'];
@@ -99,6 +106,11 @@ function checkWinCondition() {
 
         if (counts.some((count) => count === CARDS_PER_TYPE)) {
             const winner = PLAYER_NAMES[i];
+            const winningFruitIndex = counts.findIndex((count) => count === CARDS_PER_TYPE);
+            const winningFruit = FRUIT_NAMES[winningFruitIndex];
+            const points = FRUIT_POINTS[winningFruit];
+
+            winCounts[i] += points; // Add points to the winner's total
 
             const nextPlayerIndex = (i + 1) % TOTAL_PLAYERS;
             if (playerHands[i].length > CARDS_PER_TYPE) {
@@ -107,12 +119,11 @@ function checkWinCondition() {
                 displayMessage(`${winner} transferred a card to ${PLAYER_NAMES[nextPlayerIndex]}.`);
             }
 
-            winCounts[i]++;
             updateWinnerDisplay();
             updatePointsDisplay();
             renderAllHands();
 
-            displayMessage(`${winner} won the game!`, winner === "You" ? 'win' : 'lose');
+            displayMessage(`${winner} won the game with ${winningFruit} and earned ${points} points!`, winner === "You" ? 'win' : 'lose');
             currentPlayerIndex = -1;
             setTimeout(showStartButton, 2000);
             return true;
@@ -130,7 +141,7 @@ function updateWinnerDisplay() {
 
 function updatePointsDisplay() {
     const pointsDisplay = document.getElementById('points-display');
-    pointsDisplay.innerText = `Points: ${winCounts.join(', ')}`; // Update the display with points
+    pointsDisplay.innerHTML = PLAYER_NAMES.map((name, index) => `${name}: ${winCounts[index]} points`).join('<br>');
 }
 
 // Handle player's action
@@ -230,6 +241,7 @@ function startGame() {
     document.getElementById("start-game-button").style.display = 'none';
 }
 
+
 // Shuffle and distribute cards, then start the game
 function shuffleAndStartGame() {
     distributeCards();
@@ -275,6 +287,7 @@ function showStartButton() {
     }
 }
 
+
 function startNewMatch() {
     const startButton = document.getElementById('start-button');
     if (startButton) {
@@ -282,6 +295,7 @@ function startNewMatch() {
     }
     startGame();
 }
+
 
 function resetGameUI() {
     for (let i = 0; i < TOTAL_PLAYERS; i++) {
