@@ -133,27 +133,18 @@ h2 {
     justify-content: center;
     border-radius: 10px;
     background: linear-gradient(145deg, #c82727, #2980b9);
+    
     color: #fff;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 24px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: float 3s infinite ease-in-out;
 }
-.player-1-cards{
-    width: 90px;
-        height: 130px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        background: linear-gradient(145deg, #c82727, #2980b9);
-        color: #fff;
-        font-weight: bold;
+#player-1-cards{
+  
         font-size: 14px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        animation: float 3s infinite ease-in-out;
+  
 }
 .card:hover {
     transform: scale(1.1) rotate(5deg);
@@ -202,9 +193,10 @@ h2 {
 }
 
 #game-controls {
-   position: absolute;
- top: 50%;
- left: 43%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     margin: 20px 0;
 }
@@ -229,72 +221,70 @@ h2 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-#winner-display,
-#points-display {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(145deg, #0f4bf199, #f39c12);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-weight: 600;
-    animation: fadeInRight 1s ease-in-out;
+#start-game-button, #shuffle-button {
+    display: inline-block;
 }
 
-#points-display {
-    top: 70px;
-    background: linear-gradient(145deg, #3498db, #2980b9);
-}
+ /* Add these styles to your existing CSS */
 
-@keyframes glow {
-    from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
-    }
+ #points-display {
+     margin-top: 10px;
+     font-size: 18px;
+     font-weight: bold;
+ }
 
-    to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    }
-}
+ .pass-controls button {
+     margin: 5px;
+     padding: 10px;
+     font-size: 16px;
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+ }
 
-@keyframes float {
+ .pass-controls button:hover {
+     background-color: #45a049;
+ }
 
-    0%,
-    100% {
-        transform: translateY(0);
-    }
+ #start-game-button, #shuffle-button {
+     margin: 10px;
+     padding: 15px 30px;
+     font-size: 18px;
+     background-color: #008CBA;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+ }
 
-    50% {
-        transform: translateY(-10px) rotate(3deg);
-    }
-}
+ #start-game-button:hover, #shuffle-button:hover {
+     background-color: #007B9A;
+ }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+ #message-area {
+     margin: 20px 0;
+     padding: 10px;
+     font-size: 18px;
+     background-color: #000000;
+     border-radius: 5px;
+     color: white;
+ }
 
-    to {
-        opacity: 1;
-    }
-}
+ .win {
+     color: green;
+     font-weight: bold;
+ }
 
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(20px);
-    }
+ .lose {
+     color: red;
+     font-weight: bold;
+ }
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-
-.card.highlight {
-    background-color: rgb(1, 56, 254);
-    /* Light red color */
+ .highlight .card {
+    border: 2px solid yellow;
+    box-shadow: 0 0 10px yellow;
 }
