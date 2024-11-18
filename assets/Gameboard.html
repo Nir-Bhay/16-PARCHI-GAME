@@ -7,6 +7,301 @@
     <title>16 Parchi Thap - Single Player Game</title>
     <link rel="stylesheet" href="css/Gameboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 0px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.game-container {
+    display: grid;
+    grid-template-areas:
+        "top top top"
+        "left center right"
+        "bottom bottom bottom";
+    gap: 20px;
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+    
+}
+
+.player-area {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.3s ease;
+}
+
+.player-profile {
+    display: flex;
+    flex-direction: row;
+   
+   
+}
+.player-profile img {
+    margin-right: 10px;
+}
+.player-profile .player-name{
+    display: flex;
+    flex-direction: column;
+}
+#player-2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+#player-3:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+#player-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.computer-player {
+    justify-content: center;
+}
+
+.computer-player.top {
+    margin-top: 10px;
+    margin-left: 20%;
+    width: 60%;
+    grid-area: top;
+}
+
+.computer-player.left {
+    grid-area: left;
+}
+.computer-player.center {
+    grid-area:center;
+}
+
+.computer-player.right {
+    grid-area: right;
+}
+
+.human-player {
+    grid-area: bottom;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.parchi-cards {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-right: 50px;
+}
+
+.card {
+    width: 80px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #c82727, #2980b9);
+    
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: float 3s infinite ease-in-out;
+}
+#player-1-cards{
+  
+        font-size: 14px;
+  
+}
+.card:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pass-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pass-controls button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pass-controls button:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#message-area {
+    position: absolute;
+    font-size: 20px;
+    padding: 15px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  top: 30px;
+  left: 0;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-in-out;
+}
+
+#game-controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin: 20px 0;
+}
+
+#game-controls button {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#game-controls button:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+#start-game-button, #shuffle-button {
+    display: inline-block;
+}
+
+ /* Add these styles to your existing CSS */
+
+ #points-display {
+     margin-top: 10px;
+     font-size: 18px;
+     font-weight: bold;
+ }
+
+ .pass-controls button {
+     margin: 5px;
+     padding: 10px;
+     font-size: 16px;
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+ }
+
+ .pass-controls button:hover {
+     background-color: #45a049;
+ }
+
+ #start-game-button, #shuffle-button {
+     margin: 10px;
+     padding: 15px 30px;
+     font-size: 18px;
+     background-color: #008CBA;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+ }
+
+ #start-game-button:hover, #shuffle-button:hover {
+     background-color: #007B9A;
+ }
+
+ #message-area {
+     margin: 20px 0;
+     padding: 10px;
+     font-size: 18px;
+     background-color: #000000;
+     border-radius: 5px;
+     color: white;
+ }
+
+ .win {
+     color: green;
+     font-weight: bold;
+ }
+
+ .lose {
+     color: red;
+     font-weight: bold;
+ }
+
+ .highlight .card {
+    border: 2px solid yellow;
+    box-shadow: 0 0 10px yellow;
+}
+
+    </style>
 </head>
 
 <body>
@@ -69,6 +364,336 @@
     </div>
 
     <script src="js/Gameboard.js"></script>
+    <script>
+        // Constants
+            const TOTAL_TYPES = 4;
+            const CARDS_PER_TYPE = 4;
+            const TOTAL_PLAYERS = 4;
+            const FRUIT_NAMES = ['आम', 'केला', 'सेब', 'अंगूर'];
+
+            // New player names
+            const PLAYER_NAMES = ['You', 'Rupali', 'Rohit', 'Dipu'];
+
+
+            // Array of emojis to use for computer players' cards
+            const EMOJIS = ['🍎', '🍌', '🍇', '🍉', '🍒', '🍓', '🍑', '🍍', '🥭', '🍊', '🍋', '🍈', '🍏', '🍐', '🍅', '🍆'];
+
+
+
+
+            // Player hands and game variables
+            let playerHands = Array.from({ length: TOTAL_PLAYERS }, () => []);
+            let currentPlayerIndex = -1; // Track turns (-1 = not started, 0 = player, 1-3 = AIs)
+            let winCounts = Array(TOTAL_PLAYERS).fill(0);
+
+            // Initialize deck with four types of parchis, each repeated four times
+            let deck = Array.from({ length: TOTAL_TYPES * CARDS_PER_TYPE }, (_, i) => Math.floor(i / CARDS_PER_TYPE));
+
+            // Shuffle function
+            function shuffleDeck(deck) {
+                for (let i = deck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [deck[i], deck[j]] = [deck[j], deck[i]];
+                }
+            }
+
+            // Distribute cards to players
+            function distributeCards() {
+                shuffleDeck(deck);
+                playerHands = Array.from({ length: TOTAL_PLAYERS }, () => []);
+
+                // Ensure each player gets exactly 4 cards
+                for (let i = 0; i < TOTAL_PLAYERS; i++) {
+                    for (let j = 0; j < CARDS_PER_TYPE; j++) {
+                        playerHands[i].push(deck[i * CARDS_PER_TYPE + j]);
+                    }
+                }
+            }
+
+            // Function to display player's hand
+            function renderPlayerHand(playerIndex) {
+                const playerHandDiv = document.getElementById(`player-${playerIndex + 1}-cards`);
+                playerHandDiv.innerHTML = "";
+
+                // Check if the player is the human player (index 0)
+                if (playerIndex === 0) {
+                    // Display card names for the human player
+                    playerHands[playerIndex].forEach((card) => {
+                        const cardDiv = document.createElement("div");
+                        cardDiv.className = "card";
+                        cardDiv.textContent = FRUIT_NAMES[card];
+                        playerHandDiv.appendChild(cardDiv);
+                    });
+                } else {
+
+                    // Hide card names for computer players and use random emojis
+                    playerHands[playerIndex].forEach(() => {
+                        const cardDiv = document.createElement("div");
+                        cardDiv.className = "card";
+                        cardDiv.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]; // Random emoji
+                        playerHandDiv.appendChild(cardDiv);
+                    });
+                }
+
+                // Highlight the current player's cards
+                if (currentPlayerIndex === playerIndex) {
+                    playerHandDiv.classList.remove('highlight');
+
+                } else {
+                    playerHandDiv.classList.add('highlight');
+                }
+            }
+
+            // Function to display all players' hands
+            function renderAllHands() {
+                for (let i = 0; i < TOTAL_PLAYERS; i++) {
+                    renderPlayerHand(i);
+                }
+            }
+
+            // Message display
+            function displayMessage(message, type = '') {
+                const messageArea = document.getElementById("message-area");
+                messageArea.textContent = message;
+                messageArea.className = type;
+            }
+
+            // Check win condition for any player
+            function checkWinCondition() {
+                for (let i = 0; i < TOTAL_PLAYERS; i++) {
+                    const counts = Array(TOTAL_TYPES).fill(0);
+                    playerHands[i].forEach((parchi) => counts[parchi]++);
+
+                    if (counts.some((count) => count === CARDS_PER_TYPE)) {
+                        const winner = PLAYER_NAMES[i];
+
+                        const nextPlayerIndex = (i + 1) % TOTAL_PLAYERS;
+                        if (playerHands[i].length > CARDS_PER_TYPE) {
+                            const extraCard = playerHands[i].pop();
+                            playerHands[nextPlayerIndex].push(extraCard);
+                            displayMessage(`${winner} transferred a card to ${PLAYER_NAMES[nextPlayerIndex]}.`);
+                        }
+
+                        winCounts[i]++;
+                        updateWinnerDisplay();
+                        updatePointsDisplay();
+                        renderAllHands();
+
+                        displayMessage(`${winner} won the game!`, winner === "You" ? 'win' : 'lose');
+                        currentPlayerIndex = -1;
+                        setTimeout(showStartButton, 2000);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // Update winner display
+            function updateWinnerDisplay() {
+                const winnerDisplay = document.getElementById('winner-display');
+                winnerDisplay.innerText = `Wins: ${winCounts.join(', ')}`; // Update the display with win counts
+                winnerDisplay.style.display = 'block';
+            }
+
+            function updatePointsDisplay() {
+                const pointsDisplay = document.getElementById('points-display');
+                pointsDisplay.innerText = `Points: ${winCounts.join(', ')}`; // Update the display with points
+            }
+
+            // Handle player's action
+            function playerPassParchi(type) {
+                if (currentPlayerIndex !== 0) return;
+
+                const parchiIndex = playerHands[0].indexOf(FRUIT_NAMES.indexOf(type));
+                if (parchiIndex === -1) {
+                    displayMessage(`You don't have a ${type} card!`);
+                    return;
+                }
+
+                const parchi = playerHands[0].splice(parchiIndex, 1)[0];
+                playerHands[1].push(parchi);
+
+                renderPlayerHand(0);
+                renderPlayerHand(1);
+
+                displayMessage(`Passing ${FRUIT_NAMES[parchi]} to Rupali...`);
+
+                if (checkWinCondition()) return;
+                currentPlayerIndex = 1;
+                setTimeout(computerTurn, 1000);
+            }
+
+            // Handle AI turns
+            let playerActions = Array.from({ length: TOTAL_PLAYERS }, () => ({
+                passedTypes: Array(TOTAL_TYPES).fill(0)
+            }));
+
+            // Update player actions
+            function updatePlayerActions(playerIndex, parchiType) {
+                playerActions[playerIndex].passedTypes[parchiType]++;
+            }
+
+            // Analyze player behavior and adjust AI strategy
+            function analyzePlayerBehavior() {
+                playerActions.forEach((actions, index) => {
+                    const frequentType = actions.passedTypes.findIndex(count => count > 2); // Arbitrary threshold
+                    if (frequentType !== -1) {
+                        console.log(`Player ${index} frequently passes type ${frequentType}`);
+                    }
+                });
+            }
+
+            // Modify computerTurn to use adaptive strategy
+            function computerTurn() {
+                if (currentPlayerIndex === -1) return; // Game over
+
+                const aiIndex = currentPlayerIndex;
+                const nextPlayerIndex = (currentPlayerIndex + 1) % TOTAL_PLAYERS;
+
+                const parchiCounts = Array(TOTAL_TYPES).fill(0);
+                playerHands[aiIndex].forEach((parchi) => parchiCounts[parchi]++);
+
+                const maxCount = Math.max(...parchiCounts);
+                const parchiToFocusOn = parchiCounts.findIndex(count => count === maxCount);
+
+                let parchiToPassIndex;
+                const mixedTypes = playerHands[aiIndex].filter(parchi => parchi !== parchiToFocusOn);
+
+                if (mixedTypes.length > 0) {
+                    parchiToPassIndex = playerHands[aiIndex].indexOf(mixedTypes[Math.floor(Math.random() * mixedTypes.length)]);
+                } else {
+                    parchiToPassIndex = playerHands[aiIndex].findIndex((parchi) => parchiCounts[parchi] === maxCount);
+                }
+
+                const parchiToPass = playerHands[aiIndex].splice(parchiToPassIndex, 1)[0];
+                playerHands[nextPlayerIndex].push(parchiToPass);
+
+                updatePlayerActions(aiIndex, parchiToPass);
+
+                renderPlayerHand(aiIndex);
+                renderPlayerHand(nextPlayerIndex);
+
+                displayMessage(`Computer ${PLAYER_NAMES[aiIndex]} passed a ${FRUIT_NAMES[parchiToPass]} to ${PLAYER_NAMES[nextPlayerIndex]}...`);
+
+                if (checkWinCondition()) return;
+
+                currentPlayerIndex = nextPlayerIndex;
+                if (currentPlayerIndex === 0) {
+                    displayMessage("Your turn! Select a parchi type to pass.");
+                } else {
+                    setTimeout(computerTurn, 3000);
+                }
+            }
+
+            // Initial setup
+            function startGame() {
+                playerHands = Array.from({ length: TOTAL_PLAYERS }, () => []);
+                winCounts = Array(TOTAL_PLAYERS).fill(0);
+                currentPlayerIndex = -1;
+                updateWinnerDisplay();
+                updatePointsDisplay();
+                displayMessage("Click 'Shuffle' to shuffle and distribute cards.");
+                document.getElementById("shuffle-button").style.display = 'block';
+                document.getElementById("start-game-button").style.display = 'none';
+            }
+
+            // Shuffle and distribute cards, then start the game
+            function shuffleAndStartGame() {
+                distributeCards();
+                renderAllHands();
+                currentPlayerIndex = Math.floor(Math.random() * TOTAL_PLAYERS);
+                document.getElementById("shuffle-button").style.display = 'none';
+                if (currentPlayerIndex === 0) {
+                    displayMessage("Your turn! Select a parchi type to pass.");
+                } else {
+                    displayMessage(`${PLAYER_NAMES[currentPlayerIndex]} starts the game.`);
+                    setTimeout(computerTurn, 1000);
+                }
+            }
+
+            // Event listeners
+            document.addEventListener('DOMContentLoaded', function () {
+                const startGameButton = document.getElementById('start-game-button');
+                const shuffleButton = document.getElementById('shuffle-button');
+                const messageArea = document.getElementById('message-area');
+
+                startGameButton.addEventListener('click', function () {
+                    startGame();
+                    this.style.display = 'none';
+                    shuffleButton.style.display = 'inline-block';
+                    messageArea.textContent = "Click 'Shuffle Cards' to begin the game.";
+                });
+
+                shuffleButton.addEventListener('click', function () {
+                    shuffleAndStartGame();
+                    this.style.display = 'none';
+                });
+            });
+
+            /**
+             * Creates and displays a "Start New Match" button on the page.
+             * When clicked, the button triggers the start of a new match.
+             */
+            function showStartButton() {
+                const startButton = document.getElementById('start-button');
+                startButton.innerText = 'Start New Match';
+                if (startButton) {
+                    startButton.onclick = startNewMatch;
+                }
+            }
+
+            function startNewMatch() {
+                const startButton = document.getElementById('start-button');
+                if (startButton) {
+                    startButton.remove();
+                }
+                startGame();
+            }
+
+            function resetGameUI() {
+                for (let i = 0; i < TOTAL_PLAYERS; i++) {
+                    const playerHandElement = document.getElementById(`player-hand-${i}`);
+                    if (playerHandElement) {
+                        playerHandElement.innerHTML = '';
+                    }
+                }
+
+                for (let i = 0; i < TOTAL_PLAYERS; i++) {
+                    const scoreElement = document.getElementById(`player-score-${i}`);
+                    if (scoreElement) {
+                        scoreElement.innerText = '0';
+                    }
+                }
+
+                const messageElement = document.getElementById('game-message');
+                if (messageElement) {
+                    messageElement.innerText = '';
+                }
+
+                const gameBoardElement = document.getElementById('game-board');
+                if (gameBoardElement) {
+                    gameBoardElement.innerHTML = '';
+                }
+
+                const highlightedElements = document.querySelectorAll('.highlight');
+                highlightedElements.forEach(element => {
+                    element.classList.remove('highlight');
+                });
+
+                const turnIndicator = document.getElementById('turn-indicator');
+                if (turnIndicator) {
+                    turnIndicator.innerText = 'Your turn!';
+                }
+            }
+
+            function initializePlayerHand() {
+                return [];
+            }
+
+            // Start the game on load
+            updateWinnerDisplay();
+
+    </script>
 </body>
 
 </html>
